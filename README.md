@@ -8,3 +8,5 @@ You have to be quick, but I'll help you with these conditionals that the scrappe
 - It will only write keys that are not previously present in the keys.txt file.
 
 And with that, if you leave this running in the background, chances are that you will be the first to know when a new, unredeemed, Gamepass key is available.
+
+There are some useful comments inside the file that may help you to tune it to your preferences.
