@@ -5,6 +5,16 @@ import re
 import praw.exceptions
 from winotify import Notification, audio
 
+def create_notification_item():
+    temp_item = Notification(app_id="Xbox Gamepass Keys from Reddit",
+                            title="New Key Fetched!",
+                            msg=f"You have new keys available",
+                            duration="short")
+            
+    temp_item.add_actions(label="Show Me", launch="file:///C:\\THE_PATH_TO_YOUR_TXT_FILE") # This lib, unfortunately, only accepts abolute paths :c
+    temp_item.set_audio(audio.Default, loop=False)
+    return temp_item
+
 def get_unix_from_10_min_ago():
     current_time = datetime.now()
     unix_now = time.mktime(current_time.timetuple())
@@ -58,13 +68,7 @@ def scrape_reddit():
             else:
                 print(f"The fetched key {item[0]} already is in your file.")
 
-        popup = Notification(app_id="Xbox Gamepass Keys from Reddit",
-                            title="New Key Fetched!",
-                            msg=f"You have new keys available",
-                            duration="short")
-            
-        popup.add_actions(label="Show Me", launch="file:///C:\\THE_PATH_TO_YOUR_TXT_FILE") # This lib, unfortunately, only accepts abolute paths :c
-        popup.set_audio(audio.Default, loop=False)
+        popup = create_notification_item()
 
         if write_check == 1:
             popup.show()
